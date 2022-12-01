@@ -1,0 +1,2 @@
+#!/bash/bin
+echo "$chmod 755 1 $user $date"
