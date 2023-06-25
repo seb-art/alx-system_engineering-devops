@@ -1,10 +1,4 @@
-#!/usr/bin/env bash
-#Create the SSH client configuration file
-Host *
-  PasswordAuthentication no
+#!/bin/bash
 
-Host school
-  Hostname <124704-web-01>
-  User <ubuntu>
-  IdentityFile ~/.ssh/school
-EOF
+ssh-keygen -t rsa -b 4096 -C "vagrant@ubuntu" -N "betty" -f school
+
