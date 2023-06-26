@@ -7,7 +7,7 @@ class ssh_config {
     mode    => '0644',
     content => "# Puppet-managed file. Do not edit.\n
 Host myserver
-    HostName 54.198.65.169
+    HostName 52.204.73.4
     User ubuntu
     IdentityFile ~/.ssh/school
     PasswordAuthentication no\n",
