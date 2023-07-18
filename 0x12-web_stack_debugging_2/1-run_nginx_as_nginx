@@ -1,7 +1,21 @@
 #!/usr/bin/env bash
-# Script that starts nginx as nginx user
-chmod 777 /etc/nginx/nginx.conf
-sed -i "s/80/8080/g" /etc/nginx/sites-available/default
-sed -i "s/#user www-data/user nginx/" /etc/nginx/nginx.conf
-pkill -9 apache
-su nginx -c "service nginx restart"
+# This script configures the container to run Nginx as the nginx user and listen on port 8080
+
+# Stop the nginx service if it's already running
+systemctl stop nginx
+
+# Modify the nginx user to have appropriate permissions
+usermod -u 101 -d /usr/share/nginx -s /sbin/nologin nginx
+
+# Change ownership of necessary directories to the nginx user
+chown -R nginx:nginx /var/log/nginx
+chown -R nginx:nginx /var/cache/nginx
+
+# Modify the nginx.conf file to run nginx as the nginx user and listen on port 8080
+sed -i '/^\s*user /s/user .*/user nginx;/' /etc/nginx/nginx.conf
+sed -i '/^\s*listen /s/listen .*/listen 8080 default_server;/' /etc/nginx/nginx.conf
+
+# Start the nginx service
+systemctl start nginx
+
+
