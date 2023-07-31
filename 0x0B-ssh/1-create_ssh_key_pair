@@ -2,4 +2,4 @@
 # generate ssh passphrase protected keypair:
 # private named 'school':
 
-ssh-keygen -t rsa -b 4096 -C "kimanzikims300@gmail.com" -f school
+ssh-keygen -t rsa -b 4096 -C "root@hp" -f school -N 'betty'
