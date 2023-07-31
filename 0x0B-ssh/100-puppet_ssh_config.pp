@@ -1,15 +1,12 @@
-#This puppet mainfest configures using private key ~/.ssh/school
-class ssh_config {
-  file { 'alx-system_engineering-devops/0x0B-ssh/.ssh/config':
-    ensure  => file,
-    owner   => 'ubuntu',
-    group   => 'ubuntu',
-    mode    => '0644',
-    content => "# Puppet-managed file. Do not edit.\n
-Host myserver
-    HostName 52.204.73.4
-    User ubuntu
-    IdentityFile ~/.ssh/school
-    PasswordAuthentication no\n",
-  }
+# Puppet script to create ssh config file
+file_line { 'Turn off passwd auth':
+  ensure => 'present',
+  path   => '/etc/ssh/ssh_config',
+  line   => '    PasswordAuthentication no',
+}
+
+file_line { 'Declare identity file':
+  ensure => 'present',
+  path   => '/etc/ssh/ssh_config',
+  line   => '    IdentityFile ~/.ssh/school',
 }
