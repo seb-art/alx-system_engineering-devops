@@ -1,2 +1,4 @@
 #!/usr/bin/env ruby
-puts ARGV[0].scan(/School/).join
+
+# regex for 'School' - a single command-line arg
+puts ARGV[0].scan(/\bSchool\b/).join
