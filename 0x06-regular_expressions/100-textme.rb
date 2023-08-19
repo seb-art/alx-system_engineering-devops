@@ -1,8 +1,5 @@
 #!/usr/bin/env ruby
-str=""
-str += ARGV[0].scan(/\[from:(.*?)\]/).join
-str += (',')
-str +=  ARGV[0].scan(/\[to:(.*?)\]/).join
-str += (',')
-str +=  ARGV[0].scan(/\[flags:(.*?)\]/).join
-puts str
+
+# parse log line - format: [SENDER],[RECEIVER],[FLAGS]
+# regex for TextMe(app) messages transactions stats
+puts ARGV[0].scan(/\[from:(?<sender>[^\]]+)\] \[to:(?<receiver>[^\]]+)\] \[flags:(?<flags>[^\]]+)\]/).join(',')
